@@ -41,7 +41,12 @@
 
 #ifdef _WINDOWS
 
-#include <winsock.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
+#define write send
+#define read recv
+#define close closesocket
 
 #else
 
@@ -146,6 +151,10 @@ struct HTTPResponse {
     return result;
   }
 };
+
+#ifdef DELETE
+#undef DELETE
+#endif
 
 struct HTTPClient {
   typedef enum {

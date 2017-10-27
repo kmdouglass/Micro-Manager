@@ -998,6 +998,10 @@ int CSimulatingCamera::ResizeImageBuffer()
    return DEVICE_OK;
 }
 
+// on Windows, min seems to be defined as a macro
+#ifdef min
+#undef min
+#endif
 
 inline long min(long a, long b) {
     return (a < b) ? a : b;
