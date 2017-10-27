@@ -39,10 +39,18 @@
 #include <cstring>
 #include <sstream>
 
+#ifdef _WINDOWS
+
+#include <winsock.h>
+
+#else
+
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+
+#endif
 
 // possibly add SSL?
 // https://wiki.openssl.org/index.php/SSL/TLS_Client
