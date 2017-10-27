@@ -46,12 +46,15 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
+// adding Windows support starts to get ugly
+#define WIN_SOCK_COMPAT ,0
 #define write send
 #define read recv
 #define close closesocket
 
 #else
 
+#define WIN_SOCK_COMPAT
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -230,7 +233,7 @@ struct HTTPClient {
 
     do {
       bytes_read = read(fd, ((char *)buffer.c_str()) + buffer_size,
-                        buffer.size() - buffer_size);
+                        buffer.size() - buffer_size WIN_SOCK_COMPAT);
 
       buffer_size += bytes_read;
 
@@ -260,7 +263,7 @@ struct HTTPClient {
                      "Accept: */*" HTTP_NEWLINE
                      "Connection: close" HTTP_NEWLINE HTTP_NEWLINE;
 
-    int bytes_written = write(fd, request.c_str(), request.size());
+    int bytes_written = write(fd, request.c_str(), request.size() WIN_SOCK_COMPAT);
 
     string buffer = bufferedRead(fd);
 
