@@ -11,6 +11,7 @@
 // COPYRIGHT:     Forschungszentrum Jülich
 // LICENSE:       BSD (2-clause/FreeBSD license)
 
+#include "picohttpclient.hpp"
 #include "SimulatingCamera.h"
 #include <cstdio>
 #include <string>
@@ -19,7 +20,6 @@
 #include <sstream>
 #include <algorithm>
 #include <iostream>
-#include "picohttpclient.hpp"
 
 
 using namespace std;

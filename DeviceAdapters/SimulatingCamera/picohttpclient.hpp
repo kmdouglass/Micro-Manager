@@ -41,6 +41,8 @@
 
 #ifdef _WINDOWS
 
+#define _WINSOCKAPI_
+
 #include <winsock2.h>
 #include <ws2tcpip.h>
 
